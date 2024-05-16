@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <form (ngSubmit)="sendWhatsappMessage()" #messageForm="ngForm">
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensaje de WhatsApp</label>
+            <textarea id="message" class="form-control" rows="3" required [(ngModel)]="message" name="message"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Número de teléfono</label>
+            <input type="tel" id="phoneNumber" class="form-control" required [(ngModel)]="phoneNumber" name="phoneNumber">
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

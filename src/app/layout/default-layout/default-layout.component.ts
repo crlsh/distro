@@ -12,11 +12,13 @@ import {
   SidebarHeaderComponent,
   SidebarNavComponent,
   SidebarToggleDirective,
-  SidebarTogglerDirective
+  SidebarTogglerDirective, 
 } from '@coreui/angular';
 
 import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
+import { WasapComponent } from '../../views/wasap/wasap/wasap.component';
+
 
 function isOverflown(element: HTMLElement) {
   return (
@@ -45,7 +47,8 @@ function isOverflown(element: HTMLElement) {
     ShadowOnScrollDirective,
     ContainerComponent,
     RouterOutlet,
-    DefaultFooterComponent
+    DefaultFooterComponent,
+    WasapComponent
   ]
 })
 export class DefaultLayoutComponent {
