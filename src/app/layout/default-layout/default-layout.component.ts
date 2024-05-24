@@ -18,6 +18,7 @@ import {
 import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
 import { WasapComponent } from '../../views/wasap/wasap/wasap.component';
+import { PedidosComponent } from '../../views/pedidos/pedidos/pedidos.component';
 
 
 function isOverflown(element: HTMLElement) {
@@ -48,6 +49,7 @@ function isOverflown(element: HTMLElement) {
     ContainerComponent,
     RouterOutlet,
     DefaultFooterComponent,
+    PedidosComponent,
     WasapComponent
   ]
 })

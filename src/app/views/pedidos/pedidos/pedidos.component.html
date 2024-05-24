@@ -1,0 +1,36 @@
+<div class="container mt-3">
+    <h2>Seleccionar Producto</h2>
+    <div class="mb-3">
+      <label for="productSelect" class="form-label">Producto</label>
+      <select class="form-select" id="productSelect" [(ngModel)]="selectedProduct">
+        <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Cantidad</label>
+      <input type="number" class="form-control" id="quantity" [(ngModel)]="quantity">
+    </div>
+    <div class="mb-3">
+      <label for="discount" class="form-label">Descuento (%)</label>
+      <input type="number" class="form-control" id="discount" [(ngModel)]="discount">
+    </div>
+    <button class="btn btn-primary" (click)="addToOrder()">OK</button>
+  
+    <h2 class="mt-4">Lista de Productos Pedidos</h2>
+    <ul class="list-group">
+      <li *ngFor="let item of orderItems; let i = index" class="list-group-item">
+        {{item.product.name}} - Cantidad: {{item.quantity}} - Descuento: {{item.discount}}%
+        <button class="btn btn-danger btn-sm float-end" (click)="removeOrderItem(i)">Eliminar</button>
+      </li>
+    </ul>
+    <button class="btn btn-success mt-3" (click)="closeOrder()">Cerrar Pedido</button>
+  
+    <h2 class="mt-4">Pedidos Pendientes de Envío</h2>
+    <ul class="list-group">
+      <li *ngFor="let item of pendingOrders; let i = index" class="list-group-item">
+        {{item.product.name}} - Cantidad: {{item.quantity}} - Descuento: {{item.discount}}%
+        <button class="btn btn-danger btn-sm float-end" (click)="removePendingOrderItem(i)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+  
