@@ -1,5 +1,5 @@
 {
-  "name": "distro-dashboard",
+  "name": "distro",
   "config": {
     "theme": "default",
     "coreui_library_short_version": "5.0",
