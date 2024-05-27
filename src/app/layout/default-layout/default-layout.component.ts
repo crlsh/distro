@@ -19,6 +19,8 @@ import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
 import { WasapComponent } from '../../views/wasap/wasap/wasap.component';
 import { PedidosComponent } from '../../views/pedidos/pedidos/pedidos.component';
+import { PendientesComponent } from '../../views/pedidos/pendientes/pendientes.component';
+import { ReservasComponent } from '../../views/pedidos/reservas/reservas.component';
 
 
 function isOverflown(element: HTMLElement) {
@@ -50,11 +52,17 @@ function isOverflown(element: HTMLElement) {
     RouterOutlet,
     DefaultFooterComponent,
     PedidosComponent,
-    WasapComponent
+    WasapComponent,
+    PendientesComponent,
+    ReservasComponent
+
   ]
 })
 export class DefaultLayoutComponent {
   public navItems = navItems;
+  pendingOrdersCount = 3; // Ejemplo: número de pedidos pendientes
+  reservedOrdersCount = 2; // Ejemplo: número de pedidos reservados
+
 
   onScrollbarUpdate($event: any) {
     // if ($event.verticalUsed) {

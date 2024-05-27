@@ -22,3 +22,15 @@
 //  --scrollbar-thumb-transition: height ease-out 150ms, width ease-out 150ms;
 //  --scrollbar-track-transition: height ease-out 150ms, width ease-out 150ms;
 //}
+/* dashboard.component.css */
+.container {
+  max-width: 600px;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}

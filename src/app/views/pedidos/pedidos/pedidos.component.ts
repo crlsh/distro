@@ -2,19 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { Product, OrderItem } from '../interfaces'
 
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-}
 
-interface OrderItem {
-  product: Product;
-  quantity: number;
-  discount: number;
-}
 
 @Component({
   selector: 'app-pedidos',

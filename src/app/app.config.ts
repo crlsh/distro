@@ -15,13 +15,12 @@ import { routes } from './app.routes';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCM-WuXYmaZU0AJQk7jVXyrSt1eMGIC0ps",
-  authDomain: "demoapplog.firebaseapp.com",
-  projectId: "demoapplog",
-  storageBucket: "demoapplog.appspot.com",
-  messagingSenderId: "333531493406",
-  appId: "1:333531493406:web:2be93d73101e7f569fea0f",
-  measurementId: "G-77CC9T9J1N"
+  apiKey: "AIzaSyCFKU5ivJGC_YUOXMRlhRBzOjOuMyV8Zqc",
+  authDomain: "distro-641cc.firebaseapp.com",
+  projectId: "distro-641cc",
+  storageBucket: "distro-641cc.appspot.com",
+  messagingSenderId: "1050764509504",
+  appId: "1:1050764509504:web:467b3b41aaae2b367a3aa5"
 };
 
 export const appConfig: ApplicationConfig = {

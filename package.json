@@ -1,5 +1,5 @@
 {
-  "name": "v17b5-dashboard",
+  "name": "distro-dashboard",
   "config": {
     "theme": "default",
     "coreui_library_short_version": "5.0",
