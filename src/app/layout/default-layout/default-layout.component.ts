@@ -4,6 +4,7 @@ import { NgScrollbar } from 'ngx-scrollbar';
 
 import { IconDirective } from '@coreui/icons-angular';
 import {
+  ButtonCloseDirective,
   ContainerComponent,
   ShadowOnScrollDirective,
   SidebarBrandComponent,
@@ -21,7 +22,7 @@ import { WasapComponent } from '../../views/pedidos/wasap/wasap.component';
 import { PedidosComponent } from '../../views/pedidos/pedidos/pedidos.component';
 import { PendientesComponent } from '../../views/pedidos/pendientes/pendientes.component';
 import { ReservasComponent } from '../../views/pedidos/reservas/reservas.component';
-
+import { ButtonDirective } from '@coreui/angular';
 
 function isOverflown(element: HTMLElement) {
   return (
@@ -54,7 +55,8 @@ function isOverflown(element: HTMLElement) {
     PedidosComponent,
     WasapComponent,
     PendientesComponent,
-    ReservasComponent
+    ReservasComponent,
+    ButtonDirective
 
   ]
 })
