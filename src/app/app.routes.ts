@@ -1,5 +1,8 @@
+import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { Routes } from '@angular/router';
-import { DefaultLayoutComponent } from './layout';
+import { PedidosComponent } from './views/pedidos/pedidos/pedidos.component';
+import { InicioComponent } from './views/pedidos/inicio/inicio.component';
+
 
 export const routes: Routes = [
   {
@@ -9,11 +12,30 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: DefaultLayoutComponent,
+    component: DashboardComponent,
     data: {
       title: 'Home'
     },
     children: [
+      {
+        path: '',
+        redirectTo: 'inicio',
+        pathMatch: 'full'
+      },
+      {
+        path: 'inicio',
+        component: InicioComponent,
+        data: {
+          title: 'Inicio'
+        }
+      },
+      {
+        path: 'pedidos',
+        component: PedidosComponent,
+        data: {
+          title: 'Pedidos'
+        }
+      },
   
       {
         path: 'theme',

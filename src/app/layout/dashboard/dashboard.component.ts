@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 
 import { IconDirective } from '@coreui/icons-angular';
@@ -16,26 +16,19 @@ import {
   SidebarTogglerDirective, 
 } from '@coreui/angular';
 
-import { DefaultFooterComponent, DefaultHeaderComponent } from './';
-import { navItems } from './_nav';
-import { WasapComponent } from '../../views/pedidos/wasap/wasap.component';
-import { PedidosComponent } from '../../views/pedidos/pedidos/pedidos.component';
-import { PendientesComponent } from '../../views/pedidos/pendientes/pendientes.component';
-import { ReservasComponent } from '../../views/pedidos/reservas/reservas.component';
+import { DefaultFooterComponent, DefaultHeaderComponent } from '../';
+import { navItems } from '../_nav';
+import { WasapComponent } from 'src/app/views/pedidos/wasap/wasap.component';
+import { PedidosComponent } from 'src/app/views/pedidos/pedidos/pedidos.component';
+import { PendientesComponent } from 'src/app/views/pedidos/pendientes/pendientes.component';
+import { ReservasComponent } from 'src/app/views/pedidos/reservas/reservas.component';
 import { ButtonDirective } from '@coreui/angular';
-
-function isOverflown(element: HTMLElement) {
-  return (
-    element.scrollHeight > element.clientHeight ||
-    element.scrollWidth > element.clientWidth
-  );
-}
-
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './default-layout.component.html',
-  styleUrls: ['./default-layout.component.scss'],
   standalone: true,
+ 
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',  
   imports: [
     SidebarComponent,
     SidebarHeaderComponent,
@@ -56,19 +49,26 @@ function isOverflown(element: HTMLElement) {
     WasapComponent,
     PendientesComponent,
     ReservasComponent,
-    ButtonDirective
+    ButtonDirective,
+
 
   ]
 })
-export class DefaultLayoutComponent {
+export class DashboardComponent {
   public navItems = navItems;
   pendingOrdersCount = 3; // Ejemplo: número de pedidos pendientes
   reservedOrdersCount = 2; // Ejemplo: número de pedidos reservados
 
+  constructor(private router: Router) {}
 
+  navigateToPedidos() {
+    this.router.navigate(['/pedidos']);
+  }
   onScrollbarUpdate($event: any) {
     // if ($event.verticalUsed) {
     // console.log('verticalUsed', $event.verticalUsed);
     // }
   }
 }
+
+
