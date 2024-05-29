@@ -2,6 +2,8 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { Routes } from '@angular/router';
 import { PedidosComponent } from './views/pedidos/pedidos/pedidos.component';
 import { InicioComponent } from './views/pedidos/inicio/inicio.component';
+import { PendientesComponent } from './views/pedidos/pendientes/pendientes.component';
+import { ReservasComponent } from './views/pedidos/reservas/reservas.component';
 
 
 export const routes: Routes = [
@@ -36,7 +38,21 @@ export const routes: Routes = [
           title: 'Pedidos'
         }
       },
+      {
+        path: 'pendientes',
+        component: PendientesComponent,
+        data: {
+          title: 'Pendientes'
+        }
+      },
   
+      {
+        path: 'reservados',
+        component: ReservasComponent,
+        data: {
+          title: 'Reservados'
+        }
+      },
       {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)

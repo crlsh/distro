@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 
 
@@ -59,6 +59,7 @@ export class PedidosComponent {
     );
   }
 
+  constructor(private router: Router) {}
   seleccionarCliente(cliente: Cliente) {
     this.clienteSeleccionado = cliente;
     this.clientesFiltrados = [];
@@ -88,4 +89,8 @@ export class PedidosComponent {
     const target = event.target as HTMLInputElement;
     return target ? target.value : '';
   }
+  navigateToInicio() {
+    this.router.navigate(['/inicio']); 
+  }
+
 }

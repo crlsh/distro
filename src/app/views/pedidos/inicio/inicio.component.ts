@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ButtonDirective } from '@coreui/angular';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [],
+  imports: [ButtonDirective],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
@@ -18,6 +19,19 @@ export class InicioComponent {
   navigateToPedidos() {
     this.router.navigate(['/pedidos']);
   }
+
+  navigateToPendientes() {
+    this.router.navigate(['/pendientes']);
+  }
+
+  navigateToReservados() {
+    this.router.navigate(['/reservados']);
+  }
+
+  navigateToInicio() {
+    this.router.navigate(['/inicio']); 
+  }
+  
   onScrollbarUpdate($event: any) {
     // if ($event.verticalUsed) {
     // console.log('verticalUsed', $event.verticalUsed);

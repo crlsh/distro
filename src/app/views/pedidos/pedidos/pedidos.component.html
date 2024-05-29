@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Tomar Pedido</h2>
-
+  <button class="btn btn-secondary mt-4" (click)="navigateToInicio()">Volver al Home</button>
   <div class="mb-3">
     <label for="clienteSearch" class="form-label">Buscar Cliente</label>
     <input type="text" id="clienteSearch" class="form-control" placeholder="Buscar por CUIT o apellido" (input)="buscarCliente(obtenerValorEvento($event))">

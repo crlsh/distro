@@ -1,11 +1,24 @@
-<div class="container mt-3">
+<div class="container mt-4">
+  <h2>Pedidos Pendientes de envío</h2>
+  <input *ngIf="!pedidoSeleccionado" type="text" placeholder="Buscar por cliente" (input)="buscarPedido($event)" class="form-control mb-4" />
+  <ul *ngIf="!pedidoSeleccionado" class="list-group">
+    <li *ngFor="let pedido of pedidosFiltrados" class="list-group-item" (click)="seleccionarPedido(pedido)">
+      Cliente: {{ pedido.cliente.apellido }}, {{ pedido.cliente.nombre }} - Importe: {{ pedido.importe }}
+    </li>
+  </ul>
 
-    <h2 class="mt-4">Pedidos Pendientes de Envío</h2>
-    <ul class="list-group">
-      <li *ngFor="let item of pendingOrders; let i = index" class="list-group-item">
-        {{item.product.name}} - Cantidad: {{item.quantity}} - Descuento: {{item.discount}}%
-        <button class="btn btn-danger btn-sm float-end" (click)="removePendingOrderItem(i)">Eliminar</button>
+  <div *ngIf="pedidoSeleccionado" class="mt-4">
+    <h3>Detalles del Pedido</h3>
+    <ul>
+      <li *ngFor="let item of pedidoSeleccionado.items">
+        Producto: {{ item.producto.nombre }} - Precio: {{ item.precio }} - Cantidad: {{ item.cantidad }}
       </li>
     </ul>
+    <button class="btn btn-secondary" (click)="deseleccionarPedido()">Volver</button>
+    <button class="btn btn-primary" (click)="editarPedido()">Editar</button>
+    <button class="btn btn-danger" (click)="eliminarPedido(pedidoSeleccionado.id)">Eliminar</button>
+    <button class="btn btn-success" (click)="enviarPedido(pedidoSeleccionado.id)">Enviar</button>
+    <button class="btn btn-warning" (click)="reservarPedido(pedidoSeleccionado)">Reservar</button>
   </div>
-  
+  <button class="btn btn-secondary mt-4" (click)="navigateToInicio()">Volver al Home</button>
+</div>

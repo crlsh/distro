@@ -33,8 +33,9 @@
           <div class="card-body">
             <h5 class="card-title">Pedidos Pendientes</h5>
             <p class="card-text">Gestione sus pedidos pendientes.</p>
-            <button cButton color="secondary" >Ver Pedidos Pendientes</button>
+            <button cButton color="secondary" (click)="navigateToPendientes()" >Ver Pedidos Pendientes</button>
             <!-- class="btn btn-danger" (click)="navigateTo('pending-orders')" -->
+
           </div>
         </div>
       </div>
@@ -43,7 +44,7 @@
           <div class="card-body">
             <h5 class="card-title">Pedidos Reservados</h5>
             <p class="card-text">Gestione sus pedidos reservados.</p>
-            <button cButton color="secondary" >Ver Pedidos Reservados</button>
+            <button cButton color="secondary" (click)="navigateToReservados()">Ver Pedidos Reservados</button>
             <!-- class="btn btn-info" (click)="navigateTo('reserved-orders')" -->
           </div>
         </div>
