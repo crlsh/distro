@@ -1,0 +1,10 @@
+<ng-select [items]="productosFiltered"
+           bindLabel="nombre"
+           bindValue="codigo"
+           [typeahead]="searchProduct$"
+           placeholder="Buscar producto..."
+           [(ngModel)]="selectedProduct">
+  <ng-template ng-option-tmp let-item="item">
+    <div>{{item.nombre}} - {{item.codigo}}</div>
+  </ng-template>
+</ng-select>

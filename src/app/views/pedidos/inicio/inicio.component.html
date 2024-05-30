@@ -1,53 +1,55 @@
- <!-- dashboard.component.html -->
- <div class="container mt-4">
-    <!-- Section de Avisos -->
-    <div class="row mb-4">
-      <div class="col text-center">
-        <div class="alert alert-warning" role="alert">
-          <strong>Pedidos Pendientes:</strong> {{ pendingOrdersCount }}
-        </div>
+<!-- dashboard.component.html -->
+<div class="container mt-4">
+  <!-- Section de Avisos -->
+  <div class="row mb-4">
+    <div class="col text-center">
+      <div class="alert alert-warning" role="alert">
+        <strong>Pedidos Pendientes:</strong> {{ pendingOrdersCount }}
       </div>
-      <div class="col text-center">
-        <div class="alert alert-info" role="alert">
-          <strong>Pedidos Reservados:</strong> {{ reservedOrdersCount }}
+    </div>
+    <div class="col text-center">
+      <div class="alert alert-info" role="alert">
+        <strong>Pedidos Reservados:</strong> {{ reservedOrdersCount }}
+      </div>
+    </div>
+  </div>
+
+<app-input></app-input>
+
+  <!-- Botones de Acción Rápida -->
+  <div class="row mb-4">
+    <div class="col text-center">
+      <button cButton color="primary" (click)="navigateToPedidos()">
+        Nuevo Pedido
+      </button>
+    </div>
+  </div>
+
+  <!-- Acceso a Pedidos Pendientes y Reservados -->
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Pedidos Pendientes</h5>
+          <p class="card-text">Gestione sus pedidos pendientes.</p>
+          <button cButton color="secondary" (click)="navigateToPendientes()">
+            Ver Pedidos Pendientes
+          </button>
+          <!-- class="btn btn-danger" (click)="navigateTo('pending-orders')" -->
         </div>
       </div>
     </div>
-  
-    <!-- Botones de Acción Rápida -->
-    <div class="row mb-4">
-      <div class="col text-center">
-      
- 
-        <button cButton color="primary" (click)="navigateToPedidos()">Nuevo Pedido</button>
-
-    
-      
-      </div>
-    </div>
-  
-    <!-- Acceso a Pedidos Pendientes y Reservados -->
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Pedidos Pendientes</h5>
-            <p class="card-text">Gestione sus pedidos pendientes.</p>
-            <button cButton color="secondary" (click)="navigateToPendientes()" >Ver Pedidos Pendientes</button>
-            <!-- class="btn btn-danger" (click)="navigateTo('pending-orders')" -->
-
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 mb-3">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Pedidos Reservados</h5>
-            <p class="card-text">Gestione sus pedidos reservados.</p>
-            <button cButton color="secondary" (click)="navigateToReservados()">Ver Pedidos Reservados</button>
-            <!-- class="btn btn-info" (click)="navigateTo('reserved-orders')" -->
-          </div>
+    <div class="col-md-6 mb-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Pedidos Reservados</h5>
+          <p class="card-text">Gestione sus pedidos reservados.</p>
+          <button cButton color="secondary" (click)="navigateToReservados()">
+            Ver Pedidos Reservados
+          </button>
+          <!-- class="btn btn-info" (click)="navigateTo('reserved-orders')" -->
         </div>
       </div>
     </div>
   </div>
+</div>

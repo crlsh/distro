@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonDirective } from '@coreui/angular';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [ButtonDirective],
+  imports: [ButtonDirective, InputComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
