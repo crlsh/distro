@@ -1,0 +1,21 @@
+<div class="mb-3">
+  <input
+    type="text"
+    id="productoSearch"
+    class="form-control"
+    placeholder="Buscar por nombre o código"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearch($event)"
+  />
+  <div class="dropdown" *ngIf="searchTerm && productosFiltered.length > 0">
+    <ul class="list-group mt-2" (scroll)="onScroll($event)">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let producto of displayedProducts"
+        (click)="selectProduct(producto)"
+      >
+        {{ producto.nombre }} ({{ producto.codigo }})
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,5 +1,11 @@
 <div class="container mt-4">
-  <h2>Pedidos Reservados</h2>
+  <div class="d-flex align-items-center mb-3">
+    <button class="btn btn-secondary me-3 d-flex align-items-center" (click)="navigateToInicio()">
+      <span class="me-2">&larr;</span> 
+    </button>
+    
+    <h2 class="mb-0">Pendientes de envio</h2>
+  </div>
   <input *ngIf="!pedidoSeleccionado" type="text" placeholder="Buscar por cliente" (input)="buscarPedido($event)" class="form-control mb-4" />
   <ul *ngIf="!pedidoSeleccionado" class="list-group">
     <li *ngFor="let pedido of pedidosFiltrados" class="list-group-item" (click)="seleccionarPedido(pedido)">
@@ -20,5 +26,4 @@
     <button class="btn btn-success" (click)="enviarPedido(pedidoSeleccionado.id)">Enviar</button>
     <button class="btn btn-warning" (click)="reservarPedido(pedidoSeleccionado)">Reservar</button>
   </div>
-  <button class="btn btn-secondary mt-4" (click)="navigateToInicio()">Volver al Home</button>
 </div>

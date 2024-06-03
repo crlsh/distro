@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
+import { InputComponent } from '../input/input.component';
 
 
 
@@ -30,7 +31,7 @@ interface PedidoItem {
 @Component({
   selector: 'app-pedidos',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,FormsModule ],
+  imports: [RouterOutlet,CommonModule,FormsModule, InputComponent],
   templateUrl: './pedidos.component.html',
   styleUrl: './pedidos.component.scss'
 })
@@ -71,10 +72,10 @@ export class PedidosComponent {
     );
   }
 
-  agregarProducto(producto: Producto) {
-    this.pedido.push({ producto, precio: producto.precio, descuento: 0, cantidad: 1 });
-    this.productosFiltrados = [];
-  }
+  // agregarProducto(producto: Producto) {
+  //   this.pedido.push({ producto, precio: producto.precio, descuento: 0, cantidad: 1 });
+  //   this.productosFiltrados = [];
+  // }
 
   eliminarProducto(index: number) {
     this.pedido.splice(index, 1);
@@ -93,4 +94,8 @@ export class PedidosComponent {
     this.router.navigate(['/inicio']); 
   }
 
+  agregarProducto(producto: Producto) {
+    this.pedido.push({ producto, precio: producto.precio, descuento: 0, cantidad: 1 });
+  }
+  
 }

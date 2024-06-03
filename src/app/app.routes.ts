@@ -1,9 +1,9 @@
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { Routes } from '@angular/router';
-import { PedidosComponent } from './views/pedidos/pedidos/pedidos.component';
-import { InicioComponent } from './views/pedidos/inicio/inicio.component';
-import { PendientesComponent } from './views/pedidos/pendientes/pendientes.component';
-import { ReservasComponent } from './views/pedidos/reservas/reservas.component';
+import { PedidosComponent } from './views/features/pedidos/pedidos.component';
+import { InicioComponent } from './views/features/inicio/inicio.component';
+import { PendientesComponent } from './views/features/pendientes/pendientes.component';
+import { ReservasComponent } from './views/features/reservas/reservas.component';
 
 
 export const routes: Routes = [
@@ -64,34 +64,34 @@ export const routes: Routes = [
 
       {
         path: 'pages',
-        loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
+        loadChildren: () => import('./views/core/routes').then((m) => m.routes)
       }
     ]
   },
   {
     path: '404',
-    loadComponent: () => import('./views/pages/page404/page404.component').then(m => m.Page404Component),
+    loadComponent: () => import('./views/core/page404/page404.component').then(m => m.Page404Component),
     data: {
       title: 'Page 404'
     }
   },
   {
     path: '500',
-    loadComponent: () => import('./views/pages/page500/page500.component').then(m => m.Page500Component),
+    loadComponent: () => import('./views/core/page500/page500.component').then(m => m.Page500Component),
     data: {
       title: 'Page 500'
     }
   },
   {
     path: 'login',
-    loadComponent: () => import('./views/pages/login/login.component').then(m => m.LoginComponent),
+    loadComponent: () => import('./views/core/login/login.component').then(m => m.LoginComponent),
     data: {
       title: 'Login Page'
     }
   },
   {
     path: 'register',
-    loadComponent: () => import('./views/pages/register/register.component').then(m => m.RegisterComponent),
+    loadComponent: () => import('./views/core/register/register.component').then(m => m.RegisterComponent),
     data: {
       title: 'Register Page'
     }

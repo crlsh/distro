@@ -18,10 +18,10 @@ import {
 
 import { DefaultFooterComponent, DefaultHeaderComponent } from '../';
 import { navItems } from '../_nav';
-import { WasapComponent } from 'src/app/views/pedidos/wasap/wasap.component';
-import { PedidosComponent } from 'src/app/views/pedidos/pedidos/pedidos.component';
-import { PendientesComponent } from 'src/app/views/pedidos/pendientes/pendientes.component';
-import { ReservasComponent } from 'src/app/views/pedidos/reservas/reservas.component';
+import { WasapComponent } from 'src/app/views/features/wasap/wasap.component';
+import { PedidosComponent } from 'src/app/views/features/pedidos/pedidos.component';
+import { PendientesComponent } from 'src/app/views/features/pendientes/pendientes.component';
+import { ReservasComponent } from 'src/app/views/features/reservas/reservas.component';
 import { ButtonDirective } from '@coreui/angular';
 @Component({
   selector: 'app-dashboard',
