@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { InputComponent } from '../input/input.component';
 
-
-
 interface Cliente {
   id: number;
   cuit: string;
@@ -25,13 +23,13 @@ interface PedidoItem {
   precio: number;
   descuento: number;
   cantidad: number;
+  importe: number;
 }
-
 
 @Component({
   selector: 'app-pedidos',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,FormsModule, InputComponent],
+  imports: [RouterOutlet, CommonModule, FormsModule, InputComponent],
   templateUrl: './pedidos.component.html',
   styleUrl: './pedidos.component.scss'
 })
@@ -61,6 +59,7 @@ export class PedidosComponent {
   }
 
   constructor(private router: Router) {}
+  
   seleccionarCliente(cliente: Cliente) {
     this.clienteSeleccionado = cliente;
     this.clientesFiltrados = [];
@@ -72,10 +71,10 @@ export class PedidosComponent {
     );
   }
 
-  // agregarProducto(producto: Producto) {
-  //   this.pedido.push({ producto, precio: producto.precio, descuento: 0, cantidad: 1 });
-  //   this.productosFiltrados = [];
-  // }
+  agregarProducto(producto: Producto) {
+    this.pedido.push({ producto, precio: producto.precio, descuento: 0, cantidad: 1, importe: 1 });
+    this.productosFiltrados = [];
+  }
 
   eliminarProducto(index: number) {
     this.pedido.splice(index, 1);
@@ -83,19 +82,16 @@ export class PedidosComponent {
 
   guardarPedido() {
     console.log('Pedido guardado', this.pedido);
+    // Inicializar un nuevo pedido en blanco
+    this.pedido = [];
   }
 
-  // Función de ayuda para obtener el valor del evento de entrada
   obtenerValorEvento(event: Event): string {
     const target = event.target as HTMLInputElement;
     return target ? target.value : '';
   }
+
   navigateToInicio() {
     this.router.navigate(['/inicio']); 
   }
-
-  agregarProducto(producto: Producto) {
-    this.pedido.push({ producto, precio: producto.precio, descuento: 0, cantidad: 1 });
-  }
-  
 }

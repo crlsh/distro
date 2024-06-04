@@ -1,11 +1,11 @@
 <div class="container">
   <div class="d-flex align-items-center mb-3">
     <button class="btn btn-secondary me-3 d-flex align-items-center" (click)="navigateToInicio()">
-      <span class="me-2">&larr;</span> 
+      <span class="me-2">&larr;</span>
     </button>
-    
     <h2 class="mb-0">Tomar Pedido</h2>
   </div>
+
   <div class="mb-3">
     <label for="clienteSearch" class="form-label">Buscar Cliente</label>
     <input
@@ -21,76 +21,51 @@
         *ngFor="let cliente of clientesFiltrados"
       >
         {{ cliente.apellido }}, {{ cliente.nombre }} ({{ cliente.cuit }})
-        <button
-          class="btn btn-primary btn-sm"
-          (click)="seleccionarCliente(cliente)"
-        >
-          Seleccionar
-        </button>
+        <button class="btn btn-primary btn-sm" (click)="seleccionarCliente(cliente)">Seleccionar</button>
       </li>
     </ul>
   </div>
 
   <div *ngIf="clienteSeleccionado" class="mb-3">
-    <h4>
-      Cliente Seleccionado: {{ clienteSeleccionado.apellido }},
-      {{ clienteSeleccionado.nombre }}
-    </h4>
+    <h4>Cliente Seleccionado: {{ clienteSeleccionado.apellido }}, {{ clienteSeleccionado.nombre }}</h4>
   </div>
 
   <div class="mb-3">
     <label for="productoSearch" class="form-label">Buscar Producto</label>
     <app-input (selectedProductChange)="agregarProducto($event)"></app-input>
   </div>
-  
-
-  <!-- <div class="mb-3">
-    <label for="productoSearch" class="form-label">Buscar Producto</label>
-    <input
-      type="text"
-      id="productoSearch"
-      class="form-control"
-      placeholder="Buscar por nombre o código"
-      (input)="buscarProducto(obtenerValorEvento($event))"
-    />
-    <ul class="list-group mt-2" *ngIf="productosFiltrados.length > 0">
-      <li
-        class="list-group-item d-flex justify-content-between align-items-center"
-        *ngFor="let producto of productosFiltrados"
-      >
-        {{ producto.nombre }} ({{ producto.codigo }}) - ${{ producto.precio }}
-        <button
-          class="btn btn-primary btn-sm"
-          (click)="agregarProducto(producto)"
-        >
-          Agregar
-        </button>
-      </li>
-    </ul>
-  </div> -->
 
   <div class="mb-3">
     <h4>Pedido</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let item of pedido; let i = index">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
           <div>
             {{ item.producto.nombre }}
           </div>
-          <div class="d-flex align-items-center">
-            <div class="mr-3">Precio: ${{ item.precio }}</div>
+          <div class="d-flex flex-column flex-md-row align-items-center mt-2 mt-md-0">
+            <div class="me-md-3 mb-2 mb-md-0">Precio: ${{ item.precio }}</div>
+            <label for="cantidadInput">Cantidad:</label>
             <input
               type="number"
-              class="form-control d-inline-block w-auto"
+              class="form-control me-md-2 mb-2 mb-md-0 w-100 w-md-auto"
               [(ngModel)]="item.cantidad"
               placeholder="Cantidad"
               min="1"
             />
+            <label for="descuentoInput">Descuento:</label>
             <input
               type="number"
-              class="form-control d-inline-block w-auto"
+              class="form-control me-md-2 mb-2 mb-md-0 w-100 w-md-auto"
               [(ngModel)]="item.descuento"
               placeholder="Descuento"
+              min="0"
+            />
+            <label for="pcioFinalInput">Importe:</label>
+            <input
+              type="number"
+              class="form-control me-md-2 mb-2 mb-md-0 w-100 w-md-auto"
+              [(ngModel)]="item.importe"
               min="0"
             />
             <button class="btn btn-danger btn-sm" (click)="eliminarProducto(i)">
@@ -102,7 +77,5 @@
     </ul>
   </div>
 
-  <button class="btn btn-success" (click)="guardarPedido()">
-    Guardar Pedido
-  </button>
+  <button class="btn btn-success" (click)="guardarPedido()">Guardar Pedido</button>
 </div>
