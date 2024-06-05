@@ -4,28 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { InputComponent } from '../input/input.component';
 import { PedidosStorageService } from '../../../services/pedidos-storage/pedidos-storage.service';
+import { Cliente, Producto, Pedido, PedidoItem} from 'src/app/interfaces/app';
 
-interface Cliente {
-  id: number;
-  cuit: string;
-  apellido: string;
-  nombre: string;
-}
-
-interface Producto {
-  id: number;
-  codigo: string;
-  nombre: string;
-  precio: number;
-}
-
-interface PedidoItem {
-  producto: Producto;
-  precio: number;
-  descuento: number;
-  cantidad: number;
-  importe: number;
-}
 
 @Component({
   selector: 'app-pedidos',
@@ -53,7 +33,7 @@ export class PedidosComponent {
 
   constructor(
     private router: Router,
-    private pedidosStorageService:PedidosStorageService
+    private pedidosStorageService: PedidosStorageService
   ) {}
 
   buscarCliente(query: string) {
@@ -93,13 +73,24 @@ export class PedidosComponent {
   }
 
   guardarPedido() {
-    const pedidoConEstado = {
+    if (!this.clienteSeleccionado) {
+      console.error('No se ha seleccionado ningún cliente');
+      return;
+    }
+
+    const pedidoConEstado: Pedido = {
+      id: new Date().getTime(), // Generar un ID único
+      cliente: this.clienteSeleccionado,
+      importe: this.pedido.reduce((total, item) => total + item.importe, 0),
       items: this.pedido,
-      estado: 'Pendiente de Envío' as 'Pendiente de Envío'
+      estado: 'Pendiente de Envío'
     };
+
     this.pedidosStorageService.tomarPedido(pedidoConEstado);
-    console.log('Pedido guardado', this.pedido);
+    // console.log('Pedido guardado', pedidoConEstado);
     this.pedido = [];
+    this.clienteSeleccionado = null;
+    this.navigateToInicio();
   }
 
   obtenerValorEvento(event: Event): string {

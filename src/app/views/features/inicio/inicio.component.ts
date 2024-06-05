@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonDirective } from '@coreui/angular';
 import { InputComponent } from '../input/input.component';
+import { PedidosStorageService } from 'src/app/services/pedidos-storage/pedidos-storage.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,12 +11,22 @@ import { InputComponent } from '../input/input.component';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
-export class InicioComponent {
- 
-  pendingOrdersCount = 3; // Ejemplo: número de pedidos pendientes
-  reservedOrdersCount = 2; // Ejemplo: número de pedidos reservados
+export class InicioComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  pendingOrdersCount = 0;
+  reservedOrdersCount = 0;
+
+  constructor(private router: Router, private pedidosStorage: PedidosStorageService) {}
+
+  ngOnInit() {
+    this.pedidosStorage.obtenerPedidosTomados().subscribe(pedidos => {
+      this.pendingOrdersCount = pedidos.filter(pedido => pedido.estado === 'Pendiente de Envío').length;
+    });
+
+    this.pedidosStorage.obtenerPedidosReservados().subscribe(pedidos => {
+      this.reservedOrdersCount = pedidos.length;
+    });
+  }
 
   navigateToPedidos() {
     this.router.navigate(['/pedidos']);
@@ -32,10 +43,6 @@ export class InicioComponent {
   navigateToInicio() {
     this.router.navigate(['/inicio']); 
   }
-  
-  onScrollbarUpdate($event: any) {
-    // if ($event.verticalUsed) {
-    // console.log('verticalUsed', $event.verticalUsed);
-    // }
-  }
+
+  onScrollbarUpdate($event: any) {}
 }
