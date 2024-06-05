@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { InputComponent } from '../input/input.component';
+import { PedidosStorageService } from '../../../services/pedidos-storage/pedidos-storage.service';
 
 interface Cliente {
   id: number;
@@ -31,19 +32,17 @@ interface PedidoItem {
   standalone: true,
   imports: [RouterOutlet, CommonModule, FormsModule, InputComponent],
   templateUrl: './pedidos.component.html',
-  styleUrl: './pedidos.component.scss'
+  styleUrls: ['./pedidos.component.scss'],
 })
 export class PedidosComponent {
   clientes: Cliente[] = [
     { id: 1, cuit: '20304050607', apellido: 'Perez', nombre: 'Juan' },
     { id: 2, cuit: '20304050608', apellido: 'Gomez', nombre: 'Ana' },
-    // Agrega más clientes aquí
   ];
 
   productos: Producto[] = [
     { id: 1, codigo: 'P001', nombre: 'Producto 1', precio: 100 },
     { id: 2, codigo: 'P002', nombre: 'Producto 2', precio: 200 },
-    // Agrega más productos aquí
   ];
 
   clientesFiltrados: Cliente[] = [];
@@ -52,27 +51,40 @@ export class PedidosComponent {
   clienteSeleccionado: Cliente | null = null;
   pedido: PedidoItem[] = [];
 
+  constructor(
+    private router: Router,
+    private pedidosStorageService:PedidosStorageService
+  ) {}
+
   buscarCliente(query: string) {
-    this.clientesFiltrados = this.clientes.filter(cliente =>
-      cliente.cuit.includes(query) || cliente.apellido.toLowerCase().includes(query.toLowerCase())
+    this.clientesFiltrados = this.clientes.filter(
+      (cliente) =>
+        cliente.cuit.includes(query) ||
+        cliente.apellido.toLowerCase().includes(query.toLowerCase())
     );
   }
 
-  constructor(private router: Router) {}
-  
   seleccionarCliente(cliente: Cliente) {
     this.clienteSeleccionado = cliente;
     this.clientesFiltrados = [];
   }
 
   buscarProducto(query: string) {
-    this.productosFiltrados = this.productos.filter(producto =>
-      producto.codigo.includes(query) || producto.nombre.toLowerCase().includes(query.toLowerCase())
+    this.productosFiltrados = this.productos.filter(
+      (producto) =>
+        producto.codigo.includes(query) ||
+        producto.nombre.toLowerCase().includes(query.toLowerCase())
     );
   }
 
   agregarProducto(producto: Producto) {
-    this.pedido.push({ producto, precio: producto.precio, descuento: 0, cantidad: 1, importe: 1 });
+    this.pedido.push({
+      producto,
+      precio: producto.precio,
+      descuento: 0,
+      cantidad: 1,
+      importe: producto.precio,
+    });
     this.productosFiltrados = [];
   }
 
@@ -81,8 +93,12 @@ export class PedidosComponent {
   }
 
   guardarPedido() {
+    const pedidoConEstado = {
+      items: this.pedido,
+      estado: 'Pendiente de Envío' as 'Pendiente de Envío'
+    };
+    this.pedidosStorageService.tomarPedido(pedidoConEstado);
     console.log('Pedido guardado', this.pedido);
-    // Inicializar un nuevo pedido en blanco
     this.pedido = [];
   }
 
@@ -92,6 +108,6 @@ export class PedidosComponent {
   }
 
   navigateToInicio() {
-    this.router.navigate(['/inicio']); 
+    this.router.navigate(['/inicio']);
   }
 }
